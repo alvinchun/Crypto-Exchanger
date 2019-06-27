@@ -1,28 +1,26 @@
 import React, { Component } from "react";
+import SearchResult from "./SearchResult";
 
-export default class Search extends Component {
+class Search extends Component {
 	constructor(props) {
 		super(props);
 	}
+
 	render() {
 		const searchResults = this.props.searchResults.map(curr => (
-			<li
-				className="currency-list-item"
-				data-id={curr.id}
-				className="currency-list-item"
-				onClick={this.props.handleSelect}
-			>
-				<a className="currency" href="#">
-					<span>{curr.name}</span>
-				</a>
-			</li>
+			<SearchResult
+				key={curr.id}
+				currency={curr}
+				handleSelect={this.props.handleSelect}
+			/>
 		));
+
 		return (
 			<div>
-				<h1>Cryptocurrency Exchange Caculator</h1>
-				<form action="">
-					<div>
-						<label htmlFor="">Search for a Currency:</label>
+				<h1>Cryptocurrency Portfolio Calculator</h1>
+				<form>
+					<div className="form-group">
+						<label>Search for a Currency:</label>
 						<br />
 						<input
 							onChange={this.props.handleChange}
@@ -40,3 +38,5 @@ export default class Search extends Component {
 		);
 	}
 }
+
+export default Search;
